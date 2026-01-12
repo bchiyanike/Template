@@ -11,7 +11,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.lionico.tasker"
+        applicationId = "com.lionico.template"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -22,13 +22,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    
+
     kotlinOptions {
         jvmTarget = "17"
     }
 
     buildFeatures {
         compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -54,7 +58,7 @@ dependencies {
     // WorkManager (Background Logic)
     implementation(libs.androidx.work.runtime.ktx)
 
-    // --- ADVANCED (Add these when building cloud sync or remote storage) ---
+    // --- ADVANCED (Enable per-app when needed) ---
     // implementation(libs.retrofit.core)
     // implementation(libs.kotlinx.serialization)
 }
