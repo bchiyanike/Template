@@ -55,7 +55,12 @@ jobs:
 
       - name: Build APK
         run: |
-          BUILD_TASK="assemble${{ inputs.build_type^ }}"
+          if [ "${{ inputs.build_type }}" = "debug" ]; then
+            BUILD_TASK="assembleDebug"
+          else
+            BUILD_TASK="assembleRelease"
+          fi
+
           echo "Running: $BUILD_TASK"
           ./gradlew $BUILD_TASK --stacktrace
 
