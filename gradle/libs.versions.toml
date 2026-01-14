@@ -1,6 +1,6 @@
 [versions]
 # Core Tools
-agp = "8.13.0"
+agp = "8.4.2"
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29" # Must match Kotlin version
 hilt = "2.54"
