@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       old_name:
-        description: 'Old package name (e.g., template)'
+        description: Old package name (e.g., template)
         required: true
-        default: 'template'
+        default: template
       new_name:
-        description: 'New package name (e.g., tasker)'
+        description: New package name (e.g., tasker)
         required: true
       app_name:
-        description: 'New app display name (e.g., Tasker)'
+        description: New app display name (e.g., Tasker)
         required: true
 
 jobs:
