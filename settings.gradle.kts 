@@ -16,6 +16,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LionicoTemplate"
+rootProject.name = "Template"
 
 include(":app")
