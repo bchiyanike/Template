@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       old_name:
-        description: Old package name (e.g., template)
+        description: 'Old package name'
         required: true
-        default: template
+        default: 'template'
       new_name:
-        description: New package name (e.g., tasker)
+        description: 'New package name'
         required: true
       app_name:
-        description: New app display name (e.g., Tasker)
+        description: 'New app display name'
         required: true
 
 jobs:
@@ -47,13 +47,9 @@ jobs:
           
           echo "=== Renaming Kotlin files ==="
           
-          # Package declarations
           find . -type f -name "*.kt" -exec sed -i "s/package com\.lionico\.$OLD_NAME/package com.lionico.$NEW_NAME/g" {} +
-          
-          # Import statements
           find . -type f -name "*.kt" -exec sed -i "s/import com\.lionico\.$OLD_NAME/import com.lionico.$NEW_NAME/g" {} +
           
-          # Theme name with capitalized first letter (e.g., TemplateTheme -> TaskerTheme)
           OLD_CAPITALIZED="$(echo $OLD_NAME | sed 's/./\U&/')"
           NEW_CAPITALIZED="$(echo $NEW_NAME | sed 's/./\U&/')"
           find . -type f -name "*.kt" -exec sed -i "s/${OLD_CAPITALIZED}Theme/${NEW_CAPITALIZED}Theme/g" {} +
@@ -68,19 +64,11 @@ jobs:
           
           echo "=== Renaming Gradle files ==="
           
-          # Update build.gradle.kts - applicationId and namespace
           find . -type f -name "build.gradle.kts" -exec sed -i "s/applicationId = \"com\.lionico\.$OLD_NAME\"/applicationId = \"com.lionico.$NEW_NAME\"/g" {} +
           find . -type f -name "build.gradle.kts" -exec sed -i "s/namespace = \"com\.lionico\.$OLD_NAME\"/namespace = \"com.lionico.$NEW_NAME\"/g" {} +
           
-          # Update settings.gradle.kts - root project name
           if [ -f "settings.gradle.kts" ]; then
             sed -i "s/rootProject\.name = \".*\"/rootProject.name = \"$APP_NAME\"/g" settings.gradle.kts
-          fi
-          
-          # Also check settings.gradle.kts with space variations
-          if [ -f "settings.gradle.kts " ]; then
-            sed -i "s/rootProject\.name = \".*\"/rootProject.name = \"$APP_NAME\"/g" "settings.gradle.kts "
-            mv "settings.gradle.kts " settings.gradle.kts
           fi
           
           echo "Gradle files updated"
@@ -93,18 +81,15 @@ jobs:
           
           echo "=== Renaming XML files ==="
           
-          # AndroidManifest.xml - theme references
           OLD_CAPITALIZED="$(echo $OLD_NAME | sed 's/./\U&/')"
           NEW_CAPITALIZED="$(echo $NEW_NAME | sed 's/./\U&/')"
           
           find . -type f -name "AndroidManifest.xml" -exec sed -i "s/@style\/Theme\.$OLD_NAME/@style\/Theme.$NEW_NAME/g" {} +
           find . -type f -name "AndroidManifest.xml" -exec sed -i "s/@style\/Theme\.$OLD_CAPITALIZED/@style\/Theme.$NEW_CAPITALIZED/g" {} +
           
-          # themes.xml - theme definitions
           find . -type f -name "themes.xml" -exec sed -i "s/name=\"Theme\.$OLD_NAME\"/name=\"Theme.$NEW_NAME\"/g" {} +
           find . -type f -name "themes.xml" -exec sed -i "s/name=\"Theme\.$OLD_CAPITALIZED\"/name=\"Theme.$NEW_CAPITALIZED\"/g" {} +
           
-          # strings.xml - app name
           find . -type f -name "strings.xml" -exec sed -i "s/<string name=\"app_name\">.*<\/string>/<string name=\"app_name\">$APP_NAME<\/string>/g" {} +
           
           echo "XML files updated"
@@ -116,7 +101,6 @@ jobs:
           
           echo "=== Renaming directory structure ==="
           
-          # Main source directory
           OLD_DIR="app/src/main/java/com/lionico/$OLD_NAME"
           NEW_DIR="app/src/main/java/com/lionico/$NEW_NAME"
           
@@ -127,26 +111,20 @@ jobs:
             echo "Warning: $OLD_DIR not found"
           fi
           
-          # AndroidTest directory
           OLD_TEST_DIR="app/src/androidTest/java/com/lionico/$OLD_NAME"
           NEW_TEST_DIR="app/src/androidTest/java/com/lionico/$NEW_NAME"
           
           if [ -d "$OLD_TEST_DIR" ]; then
             echo "Moving $OLD_TEST_DIR to $NEW_TEST_DIR"
             mv "$OLD_TEST_DIR" "$NEW_TEST_DIR"
-          else
-            echo "AndroidTest directory not found (this is OK if not using tests yet)"
           fi
           
-          # Unit test directory
           OLD_UNIT_DIR="app/src/test/java/com/lionico/$OLD_NAME"
           NEW_UNIT_DIR="app/src/test/java/com/lionico/$NEW_NAME"
           
           if [ -d "$OLD_UNIT_DIR" ]; then
             echo "Moving $OLD_UNIT_DIR to $NEW_UNIT_DIR"
             mv "$OLD_UNIT_DIR" "$NEW_UNIT_DIR"
-          else
-            echo "Unit test directory not found (this is OK if not using tests yet)"
           fi
           
           echo "Directory structure updated"
@@ -158,37 +136,24 @@ jobs:
           
           echo "=== Verification Summary ==="
           echo ""
-          echo "Checking for remaining references to old package name..."
           
-          # Check if old package name still exists (excluding this workflow file and git directory)
           REMAINING=$(grep -r "com\.lionico\.$OLD_NAME" . --exclude-dir=.git --exclude="rename-template.yml" || echo "None found")
           
           if [ "$REMAINING" != "None found" ]; then
-            echo "⚠️  Warning: Found remaining references to old package:"
-            echo "$REMAINING"
+            echo "Warning: Found remaining references"
           else
-            echo "✅ No remaining references to old package name"
+            echo "✅ No remaining references to old package"
           fi
           
-          echo ""
-          echo "Checking new package structure..."
-          
           if [ -d "app/src/main/java/com/lionico/$NEW_NAME" ]; then
-            echo "✅ New package directory exists: app/src/main/java/com/lionico/$NEW_NAME"
-            echo "Files in new package:"
-            find "app/src/main/java/com/lionico/$NEW_NAME" -type f -name "*.kt" | head -10
+            echo "✅ New package directory exists"
           else
-            echo "❌ Error: New package directory not found!"
+            echo "❌ Error: New package directory not found"
             exit 1
           fi
           
-          echo ""
-          echo "Checking for new package name in files..."
-          NEW_REFS=$(grep -r "com\.lionico\.$NEW_NAME" app/src --include="*.kt" --include="*.xml" --include="*.kts" | wc -l)
-          echo "✅ Found $NEW_REFS references to new package name"
-          
-          echo ""
-          echo "=== Renaming Complete ==="
+          NEW_REFS=$(grep -r "com\.lionico\.$NEW_NAME" app/src --include="*.kt" --include="*.xml" --include="*.kts" 2>/dev/null | wc -l)
+          echo "✅ Found $NEW_REFS references to new package"
       
       - name: Configure Git
         run: |
@@ -205,42 +170,35 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Rename package from $OLD_NAME to $NEW_NAME
-
-- Updated all Kotlin package declarations and imports
-- Updated Gradle applicationId and namespace
-- Updated XML theme and string references
-- Renamed directory structure from com/lionico/$OLD_NAME to com/lionico/$NEW_NAME"
+            git commit -m "Rename package from $OLD_NAME to $NEW_NAME"
             echo "Changes committed"
           fi
       
       - name: Push changes
         run: |
           git push origin ${{ github.ref_name }}
-          echo "✅ Changes pushed successfully"
+          echo "✅ Changes pushed"
       
       - name: Remove workflow file
         run: |
           if [ -f ".github/workflows/rename-template.yml" ]; then
             git rm .github/workflows/rename-template.yml
-            git commit -m "Remove rename-template workflow after successful execution"
+            git commit -m "Remove rename workflow after execution"
             git push origin ${{ github.ref_name }}
             echo "✅ Workflow file removed"
           fi
       
       - name: Summary
         run: |
-          echo "==================================="
+          echo "======================================"
           echo "✅ RENAMING COMPLETED SUCCESSFULLY"
-          echo "==================================="
+          echo "======================================"
           echo ""
           echo "Package renamed from: ${{ github.event.inputs.old_name }}"
           echo "Package renamed to: ${{ github.event.inputs.new_name }}"
           echo "App name set to: ${{ github.event.inputs.app_name }}"
           echo ""
           echo "Next steps:"
-          echo "1. Pull the changes: git pull"
-          echo "2. Build the project: ./gradlew clean build"
-          echo "3. Run the app to verify everything works"
-          echo ""
-          echo "The rename workflow has been removed from your repository."
+          echo "1. Pull changes: git pull"
+          echo "2. Build project: ./gradlew clean build"
+          echo "3. Run the app to verify"
