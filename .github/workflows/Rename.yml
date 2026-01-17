@@ -14,6 +14,9 @@ on:
         description: 'New app display name'
         required: true
 
+permissions:
+  contents: write
+
 jobs:
   rename:
     runs-on: ubuntu-latest
@@ -165,12 +168,24 @@ jobs:
           OLD_NAME="${{ github.event.inputs.old_name }}"
           NEW_NAME="${{ github.event.inputs.new_name }}"
           
+          # Remove the workflow file before committing
+          if [ -f ".github/workflows/rename-template.yml" ]; then
+            git rm .github/workflows/rename-template.yml
+            echo "Workflow file marked for deletion"
+          fi
+          
           git add -A
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Rename package from $OLD_NAME to $NEW_NAME"
+            git commit -m "Rename package from $OLD_NAME to $NEW_NAME
+
+- Updated all Kotlin package declarations and imports
+- Updated Gradle applicationId and namespace  
+- Updated XML theme and string references
+- Renamed directory structure
+- Removed rename workflow"
             echo "Changes committed"
           fi
       
@@ -178,15 +193,6 @@ jobs:
         run: |
           git push origin ${{ github.ref_name }}
           echo "✅ Changes pushed"
-      
-      - name: Remove workflow file
-        run: |
-          if [ -f ".github/workflows/rename-template.yml" ]; then
-            git rm .github/workflows/rename-template.yml
-            git commit -m "Remove rename workflow after execution"
-            git push origin ${{ github.ref_name }}
-            echo "✅ Workflow file removed"
-          fi
       
       - name: Summary
         run: |
