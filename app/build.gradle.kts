@@ -11,7 +11,7 @@ plugins {
 
 android {
     namespace = "com.lionico.template"
-    compileSdk = 34 // Align with AGP 8.2.2 stability
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.lionico.template"
@@ -54,10 +54,9 @@ android {
         buildConfig = true
     }
 
-    // Compose compiler managed via BOM in Kotlin 1.9.x
-    // composeOptions {
-    //     kotlinCompilerExtensionVersion = "1.5.7"
-    // }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.7"
+    }
 
     packaging {
         resources {
@@ -83,8 +82,6 @@ dependencies {
 
     // Optional Advanced Compose / Material stuff
     // implementation(libs.androidx.compose.material.icons.extended)
-    // implementation("com.google.android.material:material:1.11.0")
-    // implementation("com.google.accompanist:accompanist-themeadapter-material3:0.32.0")
 
     // Optional JSON serialization
     // implementation(libs.kotlinx.serialization.json)
@@ -113,4 +110,4 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-}
+} 
