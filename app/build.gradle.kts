@@ -83,7 +83,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     // Material Theme Adapter (REQUIRED for XML themes to use Material 3)
-    implementation("com.google.accompanist:accompanist-themeadapter-material3:0.31.0")
+    // implementation("com.google.accompanist:accompanist-themeadapter-material3:0.31.0")
 
     // Optional Advanced Compose / Material stuff
     implementation(libs.androidx.compose.material.icons.extended)
