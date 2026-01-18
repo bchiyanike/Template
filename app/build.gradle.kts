@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    // Splash Screen API (CRITICAL for Android 12+ splash screens)
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -81,7 +83,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     // Optional Advanced Compose / Material stuff
-    // implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.androidx.compose.material.icons.extended)
 
     // Optional JSON serialization
     // implementation(libs.kotlinx.serialization.json)
@@ -110,4 +112,4 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-} 
+}
