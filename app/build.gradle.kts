@@ -78,9 +78,12 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3) // Material 3 colors for Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // Material Theme Adapter (REQUIRED for XML themes to use Material 3)
+    implementation("com.google.accompanist:accompanist-themeadapter-material3:0.32.0")
 
     // Optional Advanced Compose / Material stuff
     implementation(libs.androidx.compose.material.icons.extended)
