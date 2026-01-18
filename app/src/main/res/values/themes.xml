@@ -1,68 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
-    File: app/src/main/res/values/themes.xml
-    Material 3 theme for Template app with splash screen support.
-    DayNight theme automatically switches between light/dark versions.
--->
+<!-- File: app/src/main/res/values/themes.xml -->
 <resources>
-    <style name="Theme.Lionico.Template" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- ========== SYSTEM UI & EDGE-TO-EDGE ========== -->
+    <!-- Universal theme parent, available on all API levels -->
+    <style name="Theme.Lionico.Template" parent="android:Theme.Material.Light.NoActionBar">
         <!-- Transparent system bars for edge-to-edge Compose -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        
-        <!-- Disable contrast enforcement for true transparency -->
         <item name="android:enforceStatusBarContrast">false</item>
         <item name="android:enforceNavigationBarContrast">false</item>
 
-        <!-- ========== ACTION BAR ========== -->
-        <!-- Disable action bar completely (already covered by NoActionBar parent) -->
+        <!-- Splash Screen (Android 12+ API, backward compatible via AndroidX) -->
+        <!-- Uses a simple, literal color the system can read before app starts -->
+        <item name="android:windowSplashScreenBackground">@android:color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowSplashScreenAnimationDuration">200</item>
+
+        <!-- Action Bar disabled (redundant with NoActionBar parent, but explicit) -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
-        <!-- ========== SPLASH SCREEN CONFIGURATION ========== -->
-        <!-- Background color (matches your surface color) -->
-        <item name="android:windowSplashScreenBackground">@color/surface</item>
-        
-        <!-- Animated icon (use your launcher foreground) -->
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        
-        <!-- Animation duration in milliseconds -->
-        <item name="android:windowSplashScreenAnimationDuration">200</item>
-        
-        <!-- Icon background color (optional, uses surface by default) -->
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/md_theme_light_surface</item>
-        
-        <!-- Branding image (optional, shown below icon) -->
-        <!-- <item name="android:windowSplashScreenBrandingImage">@drawable/branding_image</item> -->
-
-        <!-- ========== MATERIAL 3 COLOR MAPPING ========== -->
-        <!-- Map Material 3 colors to theme attributes -->
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/md_theme_light_secondary</item>
-        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
-        <item name="colorSurface">@color/md_theme_light_surface</item>
-        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
-        <item name="colorBackground">@color/md_theme_light_background</item>
-        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
-        <item name="colorError">@color/md_theme_light_error</item>
-        <item name="colorOnError">@color/md_theme_light_onError</item>
-        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
-        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
-
-        <!-- ========== WINDOW PROPERTIES ========== -->
-        <!-- Enable edge-to-edge display -->
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-        
-        <!-- Light status bar icons (for light backgrounds) -->
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
     </style>
 </resources>
