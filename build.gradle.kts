@@ -1,21 +1,16 @@
-// build.gradle.kts (root) 
+// File: build.gradle.kts (ROOT PROJECT)
 
 plugins {
-    // Apply version catalog access
+    // Android Gradle Plugin
     alias(libs.plugins.android.application) apply false
+
+    // Kotlin
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.serialization) apply false
-}
 
-// Add this block at the bottom
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        // Keep these for backward compatibility
-        classpath("com.android.tools.build:gradle:8.2.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21")
-    }
+    // Dependency Injection
+    alias(libs.plugins.hilt.android) apply false
+
+    // Kotlin Symbol Processing
+    alias(libs.plugins.ksp) apply false
 }
