@@ -6,13 +6,13 @@ kotlin = "1.9.21"
 coreKtx = "1.12.0"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
-composeBom = "2023.08.00"
+composeBom = "2024.02.01"  # Updated from 2023.08.00
 junit = "4.13.2"
 androidxJunit = "1.1.5"
 androidxEspresso = "3.5.1"
 googleAds = "23.0.0"
-material3 = "1.1.2"
-materialIconsExtended = "1.5.4"
+material3 = "1.2.1"  # Updated from 1.1.2 (compatible with BOM 2024.02.01)
+materialIconsExtended = "1.6.7"  # Updated from 1.5.4
 kotlinxSerializationJson = "1.6.0"
 
 # ADDED: Missing dependencies
@@ -67,4 +67,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" } 
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
