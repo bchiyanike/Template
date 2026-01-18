@@ -55,7 +55,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.7"
+        // Updated for Compose BOM 2024.02.01 compatibility
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 
     packaging {
