@@ -1,68 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
-    File: app/src/main/res/values-night/themes.xml
-    Material 3 Dark theme for Template app with splash screen support.
-    This is the night variant of Theme.Lionico.Template.
--->
+<!-- File: app/src/main/res/values-night/themes.xml -->
 <resources>
-    <style name="Theme.Lionico.Template" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- ========== SYSTEM UI & EDGE-TO-EDGE ========== -->
-        <!-- Transparent system bars for edge-to-edge Compose -->
+    <!-- Night variant uses same structure with dark-compatible parent -->
+    <style name="Theme.Lionico.Template" parent="android:Theme.Material.NoActionBar">
+        <!-- Same transparent/edge-to-edge setup -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        
-        <!-- Disable contrast enforcement for true transparency -->
         <item name="android:enforceStatusBarContrast">false</item>
         <item name="android:enforceNavigationBarContrast">false</item>
 
-        <!-- ========== ACTION BAR ========== -->
-        <!-- Disable action bar completely -->
+        <!-- Splash Screen: Same literal color works for night too, or use a dark gray -->
+        <item name="android:windowSplashScreenBackground">@android:color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowSplashScreenAnimationDuration">200</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
-        <!-- ========== SPLASH SCREEN CONFIGURATION ========== -->
-        <!-- Background color (uses dark surface color) -->
-        <item name="android:windowSplashScreenBackground">@color/md_theme_dark_surface</item>
-        
-        <!-- Animated icon (same as day theme) -->
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        
-        <!-- Animation duration in milliseconds -->
-        <item name="android:windowSplashScreenAnimationDuration">200</item>
-        
-        <!-- Icon background color (uses dark surface) -->
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/md_theme_dark_surface</item>
-
-        <!-- ========== MATERIAL 3 COLOR MAPPING (DARK VARIANTS) ========== -->
-        <!-- Map Material 3 DARK colors to theme attributes -->
-        <item name="colorPrimary">@color/md_theme_dark_primary</item>
-        <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/md_theme_dark_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/md_theme_dark_secondary</item>
-        <item name="colorOnSecondary">@color/md_theme_dark_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/md_theme_dark_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/md_theme_dark_onSecondaryContainer</item>
-        <item name="colorSurface">@color/md_theme_dark_surface</item>
-        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
-        <item name="colorBackground">@color/md_theme_dark_background</item>
-        <item name="colorOnBackground">@color/md_theme_dark_onBackground</item>
-        <item name="colorError">@color/md_theme_dark_error</item>
-        <item name="colorOnError">@color/md_theme_dark_onError</item>
-        <item name="colorErrorContainer">@color/md_theme_dark_errorContainer</item>
-        <item name="colorOnErrorContainer">@color/md_theme_dark_onErrorContainer</item>
-
-        <!-- ========== WINDOW PROPERTIES ========== -->
-        <!-- Enable edge-to-edge display -->
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-        
-        <!-- Dark status bar icons (for dark backgrounds) -->
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-        
-        <!-- Force dark theme system UI elements -->
-        <item name="android:forceDarkAllowed">true</item>
     </style>
 </resources>
