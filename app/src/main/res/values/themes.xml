@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- File: app/src/main/res/values/themes.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- SplashScreen theme (REQUIRED for Android 12+) -->
+    <style name="Theme.Lionico.Template.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+
+        <!-- Theme applied AFTER splash -->
+        <item name="postSplashScreenTheme">@style/Theme.Lionico.Template</item>
+    </style>
+
+    <!-- Main app theme -->
     <style name="Theme.Lionico.Template" parent="android:Theme.Material.Light.NoActionBar">
-        <!-- Transparent system bars for edge-to-edge Compose -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:enforceStatusBarContrast">false</item>
         <item name="android:enforceNavigationBarContrast">false</item>
-
-        <!-- Splash Screen -->
-        <item name="android:windowSplashScreenBackground">@android:color/black</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="android:windowSplashScreenAnimationDuration">200</item>
-
-        <!-- REMOVED: windowActionBar and windowNoTitle (redundant and incompatible) -->
     </style>
+
 </resources>
