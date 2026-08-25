@@ -10,7 +10,7 @@ import com.lionico.template.core.database.model.UserEntity
         UserEntity::class,
     ],
     version = 1,
-    exportSchema = true,
+    exportSchema = false,
 )
 abstract class LionicoDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
