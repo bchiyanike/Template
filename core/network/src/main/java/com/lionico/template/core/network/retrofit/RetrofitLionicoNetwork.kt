@@ -1,12 +1,12 @@
 package com.lionico.template.core.network.retrofit
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.lionico.template.core.model.UserData
 import com.lionico.template.core.network.LionicoNetworkDataSource
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import javax.inject.Inject

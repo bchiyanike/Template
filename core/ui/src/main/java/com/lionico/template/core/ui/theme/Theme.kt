@@ -27,7 +27,7 @@ fun LionicoTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography, // Defined in Typography.kt
+        typography = Typography,
         content = content
     )
 }

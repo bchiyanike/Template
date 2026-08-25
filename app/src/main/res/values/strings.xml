@@ -2,6 +2,11 @@
 <resources>
     <string name="app_name">Lionico Template</string>
 
+    <!-- Main Screen -->
+    <string name="main_header">TEMPLATE</string>
+    <string name="main_description">This is a starter template application.</string>
+    <string name="main_body">Use this project as a foundation for building new Android apps.\n\nIt includes:\n• Jetpack Compose\n• Material 3 design\n• Kotlin + KSP\n• Hilt dependency injection\n• Modern Gradle version catalog\n\nReplace this screen with your own UI and features.</string>
+
     <!-- Generic UI -->
     <string name="loading">Loading…</string>
     <string name="error_generic">Something went wrong</string>

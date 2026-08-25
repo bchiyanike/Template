@@ -62,11 +62,24 @@ cd MyNewProject
 # 7. Pull and build (same as Method 1, steps 7-8)
 ```
 
+### **Method 3: Local Renaming (Android Studio Terminal)**
+
+If you prefer to rename the project locally on your machine (Windows) without using GitHub Actions:
+
+1. Open the **Terminal** in Android Studio.
+2. Run the provided PowerShell script:
+   ```powershell
+   .\rename_project.ps1 -NewName "myapp" -AppName "My Awesome App"
+   ```
+   *   `-NewName`: The package name segment (e.g., `com.lionico.myapp`).
+   *   `-AppName`: The display name of your app.
+
+3. **Sync Project with Gradle Files** in Android Studio.
+
 ---
 
 ### **Summary**
 
-1. **Clone** template → **Remove** .git → **Init** new repo → **Push** to GitHub
-2. **Run workflow** on GitHub (Actions tab) to rename package
-3. **Pull** changes → **Build** project
-4. Start coding! 🚀
+1. **Option A (Cloud)**: Push to GitHub → Run **Rename Template** Action → **Pull** changes.
+2. **Option B (Local)**: Open Terminal → Run **rename_project.ps1** → **Sync Gradle**.
+3. **Build** project and start coding! 🚀

@@ -12,6 +12,10 @@ pluginManagement {
     }
 }
 
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -23,3 +27,13 @@ dependencyResolutionManagement {
 rootProject.name = "Template"
 
 include(":app")
+include(":core:common")
+include(":core:model")
+include(":core:network")
+include(":core:database")
+include(":core:data")
+include(":core:domain")
+include(":core:ui")
+include(":core:firebase")
+include(":core:billing")
+

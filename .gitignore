@@ -1,0 +1,22 @@
+# Build folders
+build/
+*/build/
+.gradle/
+.kotlin/
+captures/
+
+# IDE files
+.idea/
+*.iml
+local.properties
+.DS_Store
+
+# Hilt/KSP generated
+app/build/generated/
+
+# Log files
+*.log
+
+# Keystores
+*.jks
+*.keystore
